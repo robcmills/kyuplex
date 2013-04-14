@@ -28,7 +28,15 @@ kxPlayerCube::kxPlayerCube():
     setID( KNT_PLAYER_CUBE );
 
     //setSize( vector3df( 3.2f,1.6f,.8f ));
-    setColor( SColor( 255,255,150,0 ));
+    //setColor( SColor( 255,255,150,0 ));
+    u16 i= 0;
+    for(i; i<4; i++) { m_vertices[i].Color= SColor(255,0,255,0); }
+    for(i=4; i<8; i++) { m_vertices[i].Color= SColor(255,255,0,255); }
+    for(i=8; i<12; i++) { m_vertices[i].Color= SColor(255,255,0,0); }
+    for(i=12; i<16; i++) { m_vertices[i].Color= SColor(255,0,255,255); }
+    for(i=16; i<20; i++) { m_vertices[i].Color= SColor(255,0,0,255); }
+    for(i=20; i<24; i++) { m_vertices[i].Color= SColor(255,255,255,0); }
+
     //m_material.setTexture( 0, k.playerTex );
 
     //m_edgeMat.setTexture( 0, k.grayTex );
