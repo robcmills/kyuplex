@@ -176,16 +176,12 @@ void kx::LoadEntities()
                 IAttributes* attr = fileSys->createEmptyAttributes( driver );
                 attr->read( reader );
 
-                kxBox* bx= new kxBox(); 
-                bx->setSize( attr->getAttributeAsVector3d( "size" ));
+                kxBox* bx= new kxBox( attr->getAttributeAsVector3d( "size" ));
                 bx->setPosition( attr->getAttributeAsVector3d( "position" ));
                 bx->setRotation( attr->getAttributeAsVector3d( "rotation" ));
 
                 bx->setColor( attr->getAttributeAsColorf( "diffuse" ).toSColor() );
                 bx->setEdgeColor( attr->getAttributeAsColorf( "edgeColor" ).toSColor() );
-
-                bx->isCollisionObject= attr->getAttributeAsBool( "isCollisionObject" );
-                bx->isRigidBody= attr->getAttributeAsBool( "isRigidBody" );
 
                 activeLevel->boxes.push_back( bx );
                 attr->drop();

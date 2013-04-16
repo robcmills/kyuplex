@@ -8,12 +8,10 @@ using namespace io;
 using namespace gui;
 
 
-kxBox::kxBox(): kxNode(), 
-	m_size( vector3df( 1.6f )), m_showNormals( false ),
+kxBox::kxBox( const vector3df& size ): kxNode(), 
+	m_size( size ), m_showNormals( false ),
     m_material( SMaterial() ), m_edgeMat( SMaterial() ),
-    m_color( SColor(255,150,150,150) ), m_edgeColor( SColor(255,50,50,50) ),
-    isCollisionObject( false ), isRigidBody( false ),
-    m_co(0), m_rb(0)
+    m_color( SColor(255,150,150,150) ), m_edgeColor( SColor(255,50,50,50) )
 {
 	#ifdef _DEBUG
 	setDebugName( "kxBox" );

@@ -18,7 +18,7 @@ class kxBox : public kxNode
 {
 public:
     //! constructor
-    kxBox();
+    kxBox( const vector3df& size = vector3df( 1.6f ));
     virtual ~kxBox() {}
 
     virtual void OnRegisterSceneNode();
@@ -59,9 +59,6 @@ public:
 
     //IMeshSceneNode* meshNode;
 
-    bool isCollisionObject, isRigidBody;
-    btCollisionObject* m_co;
-    btRigidBody* m_rb;
 };
 
 

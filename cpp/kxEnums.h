@@ -6,6 +6,7 @@ enum EKX_NODE_TYPE
 {
     KNT_ROOT_NODE = 101,
     KNT_BOX,
+    KNT_RIGID_BOX,
     KNT_FRACTURE_CUBE,
     KNT_PLAYER_CUBE, 
     KNT_KILL_CUBE,
@@ -77,12 +78,13 @@ enum EKX_COLLISION_GROUPS
     ECG_STATIC =        BIT(1),  // static level geometry
     ECG_DYNAMIC =       BIT(2),  
     ECG_PLAYER_CUBE =   BIT(3), 
-    ECG_FRACTURE_CUBE = BIT(4), 
-    ECG_COLLECTABLE =   BIT(5), // items, powerups, etc.
-    ECG_COLLIDABLE =    BIT(6), // ?
-    ECG_GHOST =         BIT(7), // btGhostObject
-    ECG_LIGHT =         BIT(8), 
-    ECG_ANY =           BIT(1)|BIT(2)|BIT(3)|BIT(4)|BIT(5)|BIT(6)|BIT(7)|BIT(8)
+    ECG_RIGID_BOX =     BIT(4), 
+    ECG_FRACTURE_CUBE = BIT(5), 
+    ECG_COLLECTABLE =   BIT(6), // items, powerups, etc.
+    ECG_COLLIDABLE =    BIT(7), // ?
+    ECG_GHOST =         BIT(8), // btGhostObject
+    ECG_LIGHT =         BIT(9), 
+    ECG_ANY =           BIT(1)|BIT(2)|BIT(3)|BIT(4)|BIT(5)|BIT(6)|BIT(7)|BIT(8)|BIT(9)
 };
 
 

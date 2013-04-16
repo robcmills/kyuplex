@@ -46,7 +46,7 @@ void kx::ProcessPlayerState()
         {
             playerCube->spring->setEnabled( false );
             //physics->removeConstraint (playerCube->spring);
-            playerCube->Fracture( vector3df( 4.f, 1.f, 2.f ));
+            playerCube->Fracture( vector3df( 2.f ));
             sound->play2D( triC1release );
             return;
         }
