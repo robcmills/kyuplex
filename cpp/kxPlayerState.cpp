@@ -51,42 +51,7 @@ void kx::ProcessPlayerState()
             return;
         }
 
-        
-        // check for collectables collision
-        /*
-        for( u32 b=0; b<activeLevel->collectables.size(); b++ )
-        {
-            kxCollectable* c= activeLevel->collectables[b];
-            if( !c->isCollected )
-            {
-                vector3df cPos( c->getPosition() );
-                vector3df pPos( playerCube->getPosition() );
-                vector3df dist( cPos - pPos );
-                if( dist.getLength() < 1.6f )
-                {
-                    c->isCollected= true;
-                    activeLevel->collectables.erase( b );
-                    c->remove();
-
-                    array< ITexture* > textures;
-                    textures.push_back( greenTex );
-                    textures.push_back( orangeTex );
-                    textures.push_back( greenTex );
-                    textures.push_back( orangeTex );
-                    ISceneNodeAnimator* texAnim = smgr->createTextureAnimator( textures, 100, false );
-                    playerCube->addAnimator( texAnim );
-                    texAnim->drop();
-
-                    if( activeLevel->collectables.size() == 0 )
-                        sound->play2D( sineG3 );
-                    else 
-                        sound->play2D( sineF3 );
-                }
-            }
-        }
-        */
-
-
+       
         // collisions
         u32 n= playerCube->ghost->getNumOverlappingObjects();
         if( n && now - activeLevel->startTime > 1000 ) 
@@ -113,6 +78,28 @@ void kx::ProcessPlayerState()
                             sound->play2D( sineG3 );
                         else 
                             sound->play2D( sineF3 );
+                    } 
+                    break;
+
+                    case ECG_SOUND_TOOL:
+                    {
+                        std::cout<< "[[sound tool]] collected" <<std::endl;
+                        ISceneNode* node= static_cast<ISceneNode*>( cObj->getUserPointer() );
+                        node->remove();
+                        physics->removeCollisionObject( cObj );
+
+                        playerCube->hasSoundTool= true;
+                        playerCube->activeTool= KT_SOUND;
+                        //kxCollectAnimator* collAnim = new kxCollectAnimator( now );
+                        //playerCube->addAnimator( collAnim );
+                        //collAnim->drop();
+
+                        /*
+                        if( activeLevel->collectables.size() == 0 )
+                            sound->play2D( sineG3 );
+                        else 
+                            sound->play2D( sineF3 );
+                            */
                     } 
                     break;
 

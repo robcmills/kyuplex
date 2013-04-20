@@ -106,6 +106,14 @@ void kxLevel::reset()
         splineArray[s]->remove();
     splineArray.clear();
 
+    // collision objects
+    for( s32 co=0; co<coArray.size(); co++)
+    {
+        k.physics->removeCollisionObject( coArray[co] );
+        delete coArray[co];
+    }
+    coArray.clear();
+
     // collectables
     for( u32 c=0; c<collectables.size(); c++ )
         collectables[c]->remove();

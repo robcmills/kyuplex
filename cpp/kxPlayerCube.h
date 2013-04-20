@@ -26,7 +26,6 @@ public:
     btGeneric6DofSpringConstraint* spring;
     btGhostObject* ghost; // for collision detection
 
-    u16 state;
     vector3df moveDir;
     f32 moveSpeed, speedStep;
     f32 impactDeathThreshold, impactSoundThreshold, velDeathThreshold; 
@@ -34,7 +33,10 @@ public:
 
     btScalar linDamp, angDamp;
 
+    u16 state;
     s16 integrity; // like hp; 0=die 
+    bool hasSoundTool;
+    u16 activeTool;
 };
 
 #endif

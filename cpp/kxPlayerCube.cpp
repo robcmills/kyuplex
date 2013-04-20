@@ -22,7 +22,9 @@ kxPlayerCube::kxPlayerCube():
     velDeathThreshold( .1f ),
     lastImpTime( k.now ),
     linDamp( 0.5f ),
-    angDamp( 0.5f )
+    angDamp( 0.5f ),
+    hasSoundTool( false ),
+    activeTool( KT_NONE )
 {
     setName( "playerCubeNode" );
     setID( KNT_PLAYER_CUBE );
@@ -52,7 +54,7 @@ kxPlayerCube::kxPlayerCube():
     ghost = new btGhostObject();
 	ghost->setCollisionShape( rb->getCollisionShape() );
 	//ghost->setCollisionFlags (btCollisionObject::CF_CHARACTER_OBJECT);
-    k.physics->addCollisionObject( ghost, ECG_GHOST, ECG_COLLECTABLE );
+    k.physics->addCollisionObject( ghost, ECG_GHOST, ECG_COLLECTABLE | ECG_SOUND_TOOL );
 
 
     // SPRING CONSTRAINT

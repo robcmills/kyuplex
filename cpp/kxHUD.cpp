@@ -53,6 +53,26 @@ void kx::DrawHUD() const
             core::rect< s32>( screenCenter.X+buttonSize*2, screenCenter.Y+buttonSize*2, 512, 512),
             video::SColor( 255, 255, 255, 255 )
         );
+
+        // TOOLS
+        if( playerCube->hasSoundTool ) {
+            driver->draw2DImage(
+                soundToolTex, 
+                core::position2di( screenCenter.X, screenCenter.Y+buttonSize*2 ), // destPos
+                core::rect< s32 >( position2di(0,0), dimension2di(32,32) ), // sourceRect
+                0, // clip rect 
+                SColor(255, 255, 255, 255), 
+                true ); // useAlphaChannelOfTexture
+            if( playerCube->activeTool == KT_SOUND ) {
+                driver->draw2DRectangleOutline(
+                    recti( 
+                        position2di( screenCenter.X, screenCenter.Y+buttonSize*2 ), 
+                        dimension2du( 32,32 )),
+                    SColor( 255,255,255,255 ));
+            }
+
+        }
+
     }
 
     // debug

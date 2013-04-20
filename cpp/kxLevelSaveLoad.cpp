@@ -236,7 +236,8 @@ void kx::LoadEntities()
                 //co->getWorldTransform().setRotationDegrees( (const btVector3&) attr->getAttributeAsVector3d( "rotation" ));
                          //addCollisionObject( co, COLLISION_GROUP, COLLISION_MASK )
                 physics->addCollisionObject( co, ECG_STATIC, ECG_FRACTURE_CUBE | ECG_LIGHT );
-                // TODO: add collision group and mask to userProps 
+                // TODO: add collision group and mask to userProps ??
+                activeLevel->coArray.push_back( co );
                 attr->drop();
                 break;
             }
@@ -292,6 +293,52 @@ void kx::LoadEntities()
                 attr->drop();
                 break;
             }
+
+            else if( stringw( L"kxSoundTool" ) == reader->getNodeName() )
+            {
+                IAttributes* attr = fileSys->createEmptyAttributes( driver );
+                attr->read( reader );
+
+                const vector3df pos= attr->getAttributeAsVector3d( "position" );
+
+                // billboard
+                /*
+                IBillboardSceneNode* bb= smgr->addBillboardSceneNode(
+                    smgr->getRootSceneNode(),
+                    dimension2df( 1.6f, 1.6f ),
+                    pos );
+                bb->getMaterial(0).Lighting= false; 
+                //bb->getMaterial(0).MaterialType= EMT_TRANSPARENT_ADD_COLOR; 
+                bb->getMaterial(0).setTexture( 0, soundToolTex );
+                */
+
+                // text tool
+                ITextSceneNode* tt= smgr->addTextSceneNode(
+                    smallFont, // gui::IGUIFont *font, 
+                    L"[[s]]", // const wchar_t *text, 
+                    SColor(255, 255, 255, 255), 
+                    smgr->getRootSceneNode(), // ISceneNode *parent=0, 
+                    pos );  // const core::vector3df &position=core::vector3df(0, 0, 0), 
+                    
+
+                // collision object
+                const btVector3 halfExtents( .8f,.8f,.8f );
+                btCollisionShape* shape = new btBoxShape( halfExtents );
+
+                btCollisionObject* co = new btCollisionObject();
+                co->setCollisionShape( shape );
+                co->getWorldTransform().setOrigin( (const btVector3&) pos );
+                co->setUserPointer( (void*) tt );
+
+                physics->addCollisionObject( co, ECG_SOUND_TOOL, ECG_GHOST );
+                // TODO: not necessary to keep pointer?
+                //activeLevel->soundToolco= co; 
+                //activeLevel->soundToolNode= bb; 
+                attr->drop();
+                break;
+            }
+
+
         }
     }
     reader->drop();

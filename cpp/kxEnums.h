@@ -37,9 +37,16 @@ enum EKX_PLAYER_STATE
     EPS_DEAD
 };
 
+enum EKX_TOOLS
+{
+    KT_NONE = 401,
+	KT_SOUND
+};
+
+
 enum EKX_PLAYER_ACTION 
 {
-    EPA_MOVE_FORWARD = 401,
+    EPA_MOVE_FORWARD = 501,
     EPA_MOVE_BACKWARD,
     EPA_MOVE_LEFT,
     EPA_MOVE_RIGHT,
@@ -49,20 +56,20 @@ enum EKX_PLAYER_ACTION
 
 enum EKX_CONTROL_TYPE 
 {
-    ECT_IMPULSE = 501,
+    ECT_IMPULSE = 601,
     ECT_VELOCITY,
     ECT_NO_PHYSICS  
 };
 
 enum EKX_LEVEL_FORMAT
 {
-    ELF_KXL = 601,
+    ELF_KXL = 701,
     ELF_IRR
 };
 
 enum EKX_SPLINE_TYPE
 {
-    KST_MESH = 701,
+    KST_MESH = 801,
     KST_SPLINE_OPEN, 
     KST_SPLINE_CLOSED,
     KST_CUBE,
@@ -81,10 +88,9 @@ enum EKX_COLLISION_GROUPS
     ECG_RIGID_BOX =     BIT(4), 
     ECG_FRACTURE_CUBE = BIT(5), 
     ECG_COLLECTABLE =   BIT(6), // items, powerups, etc.
-    ECG_COLLIDABLE =    BIT(7), // ?
-    ECG_GHOST =         BIT(8), // btGhostObject
-    ECG_LIGHT =         BIT(9), 
-    ECG_ANY =           BIT(1)|BIT(2)|BIT(3)|BIT(4)|BIT(5)|BIT(6)|BIT(7)|BIT(8)|BIT(9)
+    ECG_GHOST =         BIT(7), // btGhostObject
+    ECG_LIGHT =         BIT(8), 
+    ECG_SOUND_TOOL =    BIT(9)
 };
 
 
