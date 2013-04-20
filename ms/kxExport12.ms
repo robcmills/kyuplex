@@ -207,12 +207,12 @@ fn exportEntities = (
                 dcNode.AddAttribute "value" ( colorToStr ( nodes[i].diffuse as point4 ))
                 boxAttrib.AppendNode dcNode
 			
-				coNode = xDoc.getNewNode "boolean"
+				coNode = xDoc.getNewNode "bool"
 				coNode.AddAttribute "name" "isCollisionObject"
 				coNode.AddAttribute "value" ( nodes[i].isCollisionObject as string )
 				boxAttrib.AppendNode coNode
 
-				rbNode = xDoc.getNewNode "boolean"
+				rbNode = xDoc.getNewNode "bool"
 				rbNode.AddAttribute "name" "isRigidBody"
 				rbNode.AddAttribute "value" ( nodes[i].isRigidBody as string )
 				boxAttrib.AppendNode rbNode
@@ -326,6 +326,26 @@ fn exportEntities = (
 				backNode.AddAttribute "value" pathToBackTex 
 				sbxAttrib.AppendNode backNode
             )
+
+            else if ( matchPattern nodes[i].name pattern:"*kxSoundTool*" ) then 
+            (
+                node = xDoc.getNewNode "kxSoundTool"
+                rtNode.AppendNode node
+
+                attrib = xDoc.getNewNode "attributes"
+                node.AppendNode attrib
+
+                nameNode = xDoc.getNewNode "string"
+                nameNode.AddAttribute "name" "name"
+                nameNode.AddAttribute "value" nodes[i].name 
+                attrib.AppendNode nameNode
+
+                posNode = xDoc.getNewNode "vector3d"
+                posNode.AddAttribute "name" "position"
+                posNode.AddAttribute "value" ( vec3ToStr nodes[i].pos )
+                attrib.AppendNode posNode
+            )
+
 		)
 		xDoc.PrettySaveXML()											
 	)   

@@ -23,7 +23,10 @@ replaceUI:true
 
         on length changed val do delegate.length = val
         on width changed val do delegate.width = val
-        on height changed val do delegate.height = val
+        on height changed val do ( 
+            delegate.height = val
+            CenterPivot $
+        )
     )
 
     parameters colors rollout: kxColors
@@ -45,6 +48,7 @@ replaceUI:true
             delegate.length = 1.6
             delegate.height = 1.6 
             nodeTM.translation = gridPoint
+            CenterPivot $
 			$.wirecolor = $.edge as color
 			$.material = standard()
 			$.material.diffuse = $.diffuse

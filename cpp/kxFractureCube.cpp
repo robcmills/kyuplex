@@ -51,7 +51,7 @@ kxFractureCube::kxFractureCube():
     rb->setUserPointer( (void*) this );
     rb->setSleepingThresholds( 1,1 );
 
-    k.physics->addRigidBody( rb, ECG_FRACTURE_CUBE, ECG_STATIC | ECG_DYNAMIC | ECG_FRACTURE_CUBE | ECG_LIGHT );
+    k.physics->addRigidBody( rb, ECG_FRACTURE_CUBE, ECG_STATIC | ECG_DYNAMIC | ECG_RIGID_BOX | ECG_FRACTURE_CUBE | ECG_LIGHT );
     //rb->setActivationState( 0 );
 }
 

@@ -6,6 +6,7 @@
 #include "kxKillCube.h"
 #include "kxFractureCube.h"
 #include "kxBox.h"
+#include "kxRigidBox.h"
 #include "kxMesh.h"
 #include "kxLight.h"
 
@@ -86,6 +87,11 @@ kxLevel::~kxLevel()
     for( u32 bx=0; bx<boxes.size(); bx++ )
         boxes[bx]->drop();
     boxes.clear();
+    
+    // rigid boxes
+    for( u32 rbx=0; rbx<rboxes.size(); rbx++ )
+        rboxes[rbx]->drop();
+    boxes.clear();
 }
 
 void kxLevel::reset()
@@ -125,6 +131,11 @@ void kxLevel::reset()
     for( u32 bx=0; bx<boxes.size(); bx++ )
         boxes[bx]->remove();
     boxes.clear();
+
+    // rigid boxes
+    for( u32 rbx=0; rbx<rboxes.size(); rbx++ )
+        rboxes[rbx]->remove();
+    rboxes.clear();
 
     // lights
     for( u32 l=0; l<lights.size(); l++ )

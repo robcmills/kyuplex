@@ -7,6 +7,7 @@
 #include "kxSpline.h"
 #include "kxCollectable.h"
 #include "kxBox.h"
+#include "kxRigidBox.h"
 #include "kxLevel.h"
 #include "kxLight.h"
 #include "kxEnums.h"
@@ -176,10 +177,27 @@ void kx::LoadEntities()
                 IAttributes* attr = fileSys->createEmptyAttributes( driver );
                 attr->read( reader );
 
-                kxBox* bx= new kxBox( attr->getAttributeAsVector3d( "size" ));
-                bx->setPosition( attr->getAttributeAsVector3d( "position" ));
-                bx->setRotation( attr->getAttributeAsVector3d( "rotation" ));
+                const vector3df size( attr->getAttributeAsVector3d( "size" ));
+                const vector3df pos( attr->getAttributeAsVector3d( "position" ));
+                const vector3df rot( attr->getAttributeAsVector3d( "rotation" ));
 
+                kxBox* bx= 0; // for setting common props
+
+                if( attr->getAttributeAsBool( "isRigidBody" )) {
+                    kxRigidBox* rbx= new kxRigidBox( size );
+                    // rigid body requires bt overloaded methods
+                    rbx->setPosition( (const btVector3&) pos ); 
+                    rbx->setRotation( rot );
+                    activeLevel->rboxes.push_back( rbx );
+                    bx= rbx;
+                }
+                else {
+                    bx= new kxBox( size );
+                    bx->setPosition( pos );
+                    bx->setRotation( rot );
+                }
+
+                // common props
                 bx->setColor( attr->getAttributeAsColorf( "diffuse" ).toSColor() );
                 bx->setEdgeColor( attr->getAttributeAsColorf( "edgeColor" ).toSColor() );
 

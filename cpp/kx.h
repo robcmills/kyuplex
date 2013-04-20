@@ -152,6 +152,7 @@ class kx  //kx=kyuplex
         void ProcessLevel2();         
         void ProcessLevel3();         
         void ProcessLevel4();         
+        void ProcessLevel5();         
 
         // end METHODS }}}
 
@@ -358,10 +359,8 @@ class kx  //kx=kyuplex
         ITexture* yellowTex;
         ITexture* grayCheckers;
         ITexture* testCheckers;
-        ITexture* squareTex;
-        ITexture* floorTex;
-        ITexture* squares4gradient;
         ITexture* lightTex;
+        ITexture* soundToolTex;
 
         SMaterial playerMat;
         //SMaterial rigidMat;

@@ -14,7 +14,7 @@ using namespace gui;
 
 void kx::ProcessLevel()
 {
-    activeLevel->num= 3;
+    activeLevel->num= 5;
 
     switch( activeLevel->num )
     {
@@ -23,6 +23,7 @@ void kx::ProcessLevel()
     case 2: ProcessLevel2(); break;
     case 3: ProcessLevel3(); break;
     case 4: ProcessLevel4(); break;
+    case 5: ProcessLevel5(); break;
 
     default: break;
     }
@@ -278,3 +279,64 @@ void kx::ProcessLevel4() // {{{
     }
 } // }}}
 
+void kx::ProcessLevel5() // {{{
+{
+    kxLevel* lvl = activeLevel;
+    switch( lvl->progress )
+    {
+        case 0:
+        {
+            InitModal 
+            (
+                L" Lesson 5", 
+                L" Acquire [[sound tool]]\n Press 'F' key to equip\n Click left mouse to use"
+            );
+            lvl->progress++;
+        }
+        break;
+
+        case 1:
+        {
+            LoadEntities();
+            lvl->progressTotal= 6;
+
+            physics->setGravity( btVector3( 0,0,0 ));
+
+            lvl->startTime = now;
+            lvl->progress++;
+        }
+        break;
+
+        case 5:
+            if( lvl->collectables.size() == 0 )
+            {
+                stringw doneInfo( L"" );
+                doneInfo += L" Time to complete: ";
+                doneInfo += (int) (now - activeLevel->startTime) / 100;
+                InitModal 
+                (
+                    L" Lesson 5 completed.", 
+                    doneInfo
+                );
+                lvl->progress++;
+            }
+            break;
+
+        case 6:
+            playerCube->reset();
+            activeLevel->reset();
+            lvl->num++;
+            lvl->progress= 0;
+            break;
+
+
+        default: 
+            if( lvl->collectables.size() == 0 )
+            {
+                LoadEntities();
+                lvl->progress++;
+            }
+            break;
+
+    }
+} // }}}

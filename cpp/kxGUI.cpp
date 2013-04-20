@@ -729,12 +729,8 @@ void kx::InitTextures ()
     neonGreenTex = driver->getTexture ("./textures/neonGreen.png");
     blueTex = driver->getTexture ("./textures/blue.png");
     purpleTex = driver->getTexture ("./textures/purple.png");
-    grayCheckers = driver->getTexture ("./textures/grayCheckers.png");
-    testCheckers = driver->getTexture ("./textures/testCheckers.png");
-    squareTex = driver->getTexture ("./textures/square.png");
-    floorTex = driver->getTexture ("./textures/floor.png");
-    squares4gradient = driver->getTexture ("./textures/squares4gradient.png");
     lightTex = driver->getTexture ("./textures/kxLight.png");
+    soundToolTex = driver->getTexture ("./textures/kxSoundTool.png");
 
     playerMat = SMaterial();
     playerMat.GouraudShading= false;

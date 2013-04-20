@@ -18,6 +18,7 @@ class kxSpline;
 class kxKillCube;
 class kxFractureCube;
 class kxBox;
+class kxRigidBox;
 class kxMesh;
 class kxLight;
 
@@ -56,11 +57,11 @@ public:
 
     // ENTITIES
     array< kxLight* > lights;
-    //array< kxCollectableInfo > collectablesInfoArray;
     array< kxCollectable* > collectables;
     array< kxKillCube* > killCubes;
     array< kxFractureCube* > fractureCubes;
     array< kxBox* > boxes;
+    array< kxRigidBox* > rboxes;
     u32 numActiveCollectables;
     
     //virtual int LevelCallback ();
