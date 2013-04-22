@@ -56,7 +56,7 @@ void BspConverter::addConvexVerticesCollider (btAlignedObjectArray<btVector3>& v
         body->setCenterOfMassTransform (btTransform (btQuaternion::getIdentity(), btVector3(0,0,0)));  //btVector3(-256, -64, -256)));
         body->setRestitution (1);
         //body->setUserPointer ((void*)k.activeLevel);
-        k.physics->addRigidBody (body, ECG_STATIC, ECG_PLAYER_CUBE | ECG_FRACTURE_CUBE);
+        k.physics->addRigidBody (body, ECG_STATIC, ECG_PLAYER | ECG_FRACTURE_CUBE);
     }
 }
 

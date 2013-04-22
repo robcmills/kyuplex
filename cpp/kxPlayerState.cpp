@@ -90,6 +90,10 @@ void kx::ProcessPlayerState()
 
                         playerCube->hasSoundTool= true;
                         playerCube->activeTool= KT_SOUND;
+
+                        // TODO: change this sound!
+                        sound->play2D( sineG3 );
+
                         //kxCollectAnimator* collAnim = new kxCollectAnimator( now );
                         //playerCube->addAnimator( collAnim );
                         //collAnim->drop();

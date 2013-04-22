@@ -84,13 +84,14 @@ enum EKX_COLLISION_GROUPS
     ECG_NULL = 0, 
     ECG_STATIC =        BIT(1),  // static level geometry
     ECG_DYNAMIC =       BIT(2),  
-    ECG_PLAYER_CUBE =   BIT(3), 
+    ECG_PLAYER =   BIT(3), 
     ECG_RIGID_BOX =     BIT(4), 
     ECG_FRACTURE_CUBE = BIT(5), 
     ECG_COLLECTABLE =   BIT(6), // items, powerups, etc.
     ECG_GHOST =         BIT(7), // btGhostObject
     ECG_LIGHT =         BIT(8), 
-    ECG_SOUND_TOOL =    BIT(9)
+    ECG_SOUND_TOOL =    BIT(9),
+    ECG_SOUND_BOX =     BIT(10)
 };
 
 

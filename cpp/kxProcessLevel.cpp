@@ -14,7 +14,7 @@ using namespace gui;
 
 void kx::ProcessLevel()
 {
-    activeLevel->num= 5;
+    //activeLevel->num= 5;
 
     switch( activeLevel->num )
     {

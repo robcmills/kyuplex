@@ -2,7 +2,9 @@
 #define __KX_GAME_EVENTRECEIVER_H_INCLUDED__
 
 //#include "kx.h"
-#include "kxPlayerCube.h" // <<?
+#include "kxPlayerCube.h" 
+#include "kxRigidBox.h" 
+#include "kxRigidBoxScaleAnim.h" 
 
 using namespace irr;
 using namespace core;
@@ -151,6 +153,28 @@ public:
                 }
             } // END MOUSE LOOK
 
+            // MOUSE CLICK
+            if( event.MouseInput.Event == EMIE_LMOUSE_PRESSED_DOWN )
+            {
+                if( k.playerCube->hasSoundTool && k.playerCube->activeTool == KT_SOUND ) {
+                    std::cout<< "spawn a [[sound]]" <<std::endl;
+                    kxRigidBox* rbx= new kxRigidBox( vector3df( 1.6f ));
+                    rbx->setPosition( (const btVector3&) k.playerCube->getPosition() ); 
+                    rbx->rb->getBroadphaseHandle()->m_collisionFilterGroup= ECG_SOUND_BOX;
+                    rbx->setColor( SColor(0,0,0,0) );
+                    rbx->setEdgeColor( SColor(255,255,255,255) );
+                    rbx->m_material.MaterialType= EMT_TRANSPARENT_ADD_COLOR; 
+                    
+                    kxRigidBoxScaleAnim* anim= new kxRigidBoxScaleAnim( k.now );
+                    rbx->addAnimator( anim );
+                    anim->drop();
+                    ISceneNodeAnimator* deleteAnim= k.smgr->createDeleteAnimator( 1000 );
+                    rbx->addAnimator( deleteAnim );
+                    deleteAnim->drop(); 
+                    //k.activeLevel->rboxes.push_back( rbx );
+                }
+                return true;
+            }
 
             // MOUSE WHEEL
             if( event.MouseInput.Event == EMIE_MOUSE_WHEEL )

@@ -50,7 +50,7 @@ kxRigidBox::kxRigidBox( const vector3df& size ):
     rb->setUserPointer( (void*) this );
     rb->setSleepingThresholds( 1,1 );
 
-    k.physics->addRigidBody( rb, ECG_RIGID_BOX, ECG_STATIC | ECG_DYNAMIC | ECG_RIGID_BOX | ECG_FRACTURE_CUBE | ECG_LIGHT );
+    k.physics->addRigidBody( rb, ECG_RIGID_BOX, ECG_STATIC | ECG_RIGID_BOX | ECG_FRACTURE_CUBE | ECG_PLAYER | ECG_LIGHT | ECG_SOUND_BOX );
     //rb->setActivationState( 0 );
 }
 

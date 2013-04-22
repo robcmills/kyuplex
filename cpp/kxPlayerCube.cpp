@@ -49,6 +49,8 @@ kxPlayerCube::kxPlayerCube():
     rb->setActivationState( DISABLE_DEACTIVATION );
     rb->setDamping( linDamp,angDamp );
     //rb->setFlags (btCollisionObject::CF_NO_CONTACT_RESPONSE);
+    rb->getBroadphaseHandle()->m_collisionFilterGroup= ECG_PLAYER;
+    rb->getBroadphaseHandle()->m_collisionFilterMask= ECG_STATIC | ECG_RIGID_BOX | ECG_FRACTURE_CUBE | ECG_LIGHT;
 
 
     ghost = new btGhostObject();
