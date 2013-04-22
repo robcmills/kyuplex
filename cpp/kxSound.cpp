@@ -19,6 +19,11 @@ void kx::InitSounds ()
     scaleDown = sound->addSoundSourceFromFile ("./sounds/saw_C4G3F3C3_16down.ogg");
     scaleDown->setDefaultVolume (.5f);
 
+    // Adam's sounds
+    sound_tool_emit = sound->addSoundSourceFromFile ("./sounds/sineC4simple.ogg"); 
+    sound_tool_emit->setDefaultVolume (.5f);
+    player_rigid_bump = sound->addSoundSourceFromFile ("./sounds/playerRigidBump.ogg"); 
+    player_static_bump = sound->addSoundSourceFromFile ("./sounds/playerStaticBump.ogg"); 
 
     // sine sounds
     sineC3 = sound->addSoundSourceFromFile ("./sounds/sineC3.ogg"); 

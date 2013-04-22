@@ -34,6 +34,13 @@ kxSpline::kxSpline
     }
 }
 
+void kxSpline::setColor( const SColor& newColor )
+{
+    for( u16 i=0; i<m_vertices.size(); i++ ) {
+        m_vertices[i].Color= newColor;
+    }
+}
+
 void kxSpline::OnRegisterSceneNode()
 {
     if( IsVisible )

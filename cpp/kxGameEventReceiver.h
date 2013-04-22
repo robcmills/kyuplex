@@ -4,7 +4,8 @@
 //#include "kx.h"
 #include "kxPlayerCube.h" 
 #include "kxRigidBox.h" 
-#include "kxRigidBoxScaleAnim.h" 
+#include "kxSoundSquareAnim.h" 
+#include "kxSpline.h" 
 
 using namespace irr;
 using namespace core;
@@ -158,7 +159,38 @@ public:
             {
                 if( k.playerCube->hasSoundTool && k.playerCube->activeTool == KT_SOUND ) {
                     std::cout<< "spawn a [[sound]]" <<std::endl;
-                    kxRigidBox* rbx= new kxRigidBox( vector3df( 1.6f ));
+
+                    // sound_square
+                    array< S3DVertex > vertices;
+                    S3DVertex vx;
+                    vx.Color= SColor(255,255,255,255); // what color?
+
+                    vx.Pos= vector3df( -1.6f,0,1.6f );
+                    vertices.push_back( vx );
+                    vx.Pos= vector3df( 1.6f,0,1.6f );
+                    vertices.push_back( vx );
+                    vx.Pos= vector3df( 1.6f,0,-1.6f );
+                    vertices.push_back( vx );
+                    vx.Pos= vector3df( -1.6f,0,-1.6f );
+                    vertices.push_back( vx );
+
+                    SMaterial sMat; 
+                    sMat.Lighting= false;
+                    sMat.MaterialType= EMT_TRANSPARENT_ADD_COLOR;
+
+                    kxSpline* sNode= new kxSpline( vertices, false, sMat );
+                    sNode->setName( "sound_square");
+                    sNode->setPosition( k.playerCube->getPosition() );
+                    kxSoundSquareAnim* anim= new kxSoundSquareAnim( k.now );
+                    sNode->addAnimator( anim );
+                    anim->drop();
+
+                    k.sound->play2D( k.sound_tool_emit );
+
+                    //k.activeLevel->splineArray.push_back( sNode );
+
+                    /*
+                    kxRigidBox* rbx= new kxRigidBox( vector3df( 1.6f, 0.01f, 1.6f ));
                     rbx->setPosition( (const btVector3&) k.playerCube->getPosition() ); 
                     rbx->rb->getBroadphaseHandle()->m_collisionFilterGroup= ECG_SOUND_BOX;
                     rbx->setColor( SColor(0,0,0,0) );
@@ -168,10 +200,11 @@ public:
                     kxRigidBoxScaleAnim* anim= new kxRigidBoxScaleAnim( k.now );
                     rbx->addAnimator( anim );
                     anim->drop();
-                    ISceneNodeAnimator* deleteAnim= k.smgr->createDeleteAnimator( 1000 );
-                    rbx->addAnimator( deleteAnim );
-                    deleteAnim->drop(); 
+                    //ISceneNodeAnimator* deleteAnim= k.smgr->createDeleteAnimator( 1000 );
+                    //rbx->addAnimator( deleteAnim );
+                    //deleteAnim->drop(); 
                     //k.activeLevel->rboxes.push_back( rbx );
+                    */
                 }
                 return true;
             }

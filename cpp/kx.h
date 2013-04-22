@@ -214,6 +214,10 @@ class kx  //kx=kyuplex
         ISoundSource* scaleUp;
         ISoundSource* scaleDown;
 
+        ISoundSource* sound_tool_emit;
+        ISoundSource* player_static_bump;
+        ISoundSource* player_rigid_bump;
+
         ISoundSource* sineC3;
         ISoundSource* sineC3s;
         ISoundSource* sineD3;

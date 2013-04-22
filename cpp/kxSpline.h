@@ -36,6 +36,8 @@ public:
     virtual u32 getMaterialCount() const { return 1; }
     virtual video::SMaterial& getMaterial( u32 i ) { return m_material; }
 
+    virtual void setColor( const SColor& );
+
     //virtual void serializeAttributes( io::IAttributes* out, io::SAttributeReadWriteOptions* options=0 ) const;
     //virtual void deserializeAttributes( io::IAttributes* in, io::SAttributeReadWriteOptions* options=0 );
 

@@ -50,7 +50,7 @@ int kx::Init()
 
     // DEBUG
     showDebugInfo= true;
-    showPhysicsWireframes= false;
+    showPhysicsWireframes= true;
     showLights= true;
 
     // GUI / HUD
